@@ -30,6 +30,7 @@ void Exercises::concatenateStr()
 	std::string str2 = "Hello";
 	// str1 +=  std::move(str2); // its not empty
 	str1 = str1 + std::move(str2); // its empty
+
 	printStr(str1);
 	printStr(str2);
 
@@ -43,7 +44,7 @@ void printResourceHolder(const ResourceHolder& rh)
 		return;
 	}
 	std::println("ResourceHolder strClass: {}", rh.strClass);
-}
+} 
 
 void Exercises::moveSemanticsInAClass()
 {

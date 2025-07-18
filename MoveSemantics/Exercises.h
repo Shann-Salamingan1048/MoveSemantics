@@ -8,9 +8,8 @@ std::vector<int> stealVector(std::vector<int>& vec);
 void printStr(const std::string& str);
 void printVectorSize(const std::vector<int>& vec);
 
-class ResourceHolder
+struct ResourceHolder
 {
-public:
 	ResourceHolder();
 	ResourceHolder(const std::string& str);
 
