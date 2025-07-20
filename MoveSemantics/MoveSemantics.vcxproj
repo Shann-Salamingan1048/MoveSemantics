@@ -126,11 +126,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Exercises.cpp" />
+    <ClCompile Include="Exercises2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MoveSemantics1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Exercises.h" />
+    <ClInclude Include="Exercises2.h" />
     <ClInclude Include="MoveSemantics1.h" />
   </ItemGroup>
   <ItemGroup>
