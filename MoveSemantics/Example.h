@@ -45,7 +45,7 @@ public:
 	: name{std::move(n)}, valVec{std::move((v))}, valArr(arr)
 	{}
 	example(std::string n, std::vector<std::string> v,  std::array<std::string, 1000>&& arr)
-		: name{ std::move(n) }, valVec{ std::move((v)) }, valArr(arr)
+		: name{ std::move(n) }, valVec{ std::move((v)) }, valArr(std::move(arr))
 	{}
 private:
 	std::string name;
