@@ -21,6 +21,6 @@ int main()
     //Exercises2 e2;
     //e2.Run();
 
-    // page 54 or 91/260
+    // page 54 or 93/260
 	return 0;
 }
