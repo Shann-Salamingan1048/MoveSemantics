@@ -131,6 +131,7 @@
     <ClCompile Include="MoveSemantics1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Example.h" />
     <ClInclude Include="Exercises.h" />
     <ClInclude Include="Exercises2.h" />
     <ClInclude Include="MoveSemantics1.h" />

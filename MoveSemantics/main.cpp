@@ -18,9 +18,9 @@ int main()
  //   Exercises e;
  //   e.Run();
     
-    Exercises2 e2;
-    e2.Run();
+    //Exercises2 e2;
+    //e2.Run();
 
-    // page 54 or 88/260
+    // page 54 or 91/260
 	return 0;
 }

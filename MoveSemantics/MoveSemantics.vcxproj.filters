@@ -38,6 +38,9 @@
     <ClInclude Include="Exercises2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Example.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="c-move-semantics-the-complete-guide-ebooknbsped-3967309002-9783967309003_compress.pdf" />
