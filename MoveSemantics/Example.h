@@ -3,6 +3,7 @@
 #include <print>
 #include <array>
 #include <string>
+#include <chrono>
 /*
 	When it comes to initialization, Pass by value + move is best
 	When it comes to modifying existing members, Pass by value const& is best
@@ -121,3 +122,130 @@ public:
 	
 	*/
 };
+
+
+
+class PerformanceInGet // Reference Qualifier
+{
+
+public:
+	//std::string getName() const
+	//{
+	//	return name;
+	//}
+	PerformanceInGet(const std::string& s) : name{ s } {}
+	PerformanceInGet(std::string&& s) : name{ std::move(s) } {}
+	PerformanceInGet() : name{  } {}
+	const std::string& getName() const&
+	{
+		return name;
+	}
+	std::string getName()&&
+	{
+		return std::move(name);
+	}
+	/*
+		//- callable — who can call the function(based on qualifiers like const, &, &&)
+			    // 🔹 Non-const lvalue
+				std::string& ref = p.getName(); // Calls getName() &
+				std::cout << "ref = " << ref << "\n";
+
+				// 🔹 Const lvalue
+				const std::string& cref = cp.getName(); // Calls getName() const&
+				std::cout << "cref = " << cref << "\n";
+
+				// 🔹 Rvalue
+				std::string moved = PerformanceInGet().getName(); // Calls getName() &&
+				std::cout << "moved = " << moved << "\n";
+
+				// 🔹 Const rvalue
+				std::string cmoved = std::move(cp).getName(); // Calls getName() const&&
+				std::cout << "cmoved = " << cmoved << "\n";
+
+
+	
+	// -  returned — what the function gives back (based on return type like std::string, std::string&, std::string&&)
+	
+	
+	*/
+	
+
+	/*
+	Structure: 
+		<return-type> <function-name>() [const] [& or &&] 
+		{
+			// function body
+		}	
+		std::string& getName()   // returns a reference
+		std::string&& getName()  // returns an rvalue reference
+		std::string getName()    // returns a copy
+
+		std::string getName() &         // only callable on lvalues
+		std::string getName() &&        // only callable on rvalues
+		std::string getName() const&    // only callable on const lvalues
+		std::string getName() const&&   // only callable on const rvalues
+	*/
+/*
+Sample Code:
+	std::vector<PerformanceInGet> v{ 10000};
+	auto start = std::chrono::high_resolution_clock::now();
+	for (const auto& p: v)
+	{
+		if (p.getStrConst().empty()) // safe but slow
+			// Copies `name` unnecessarily
+			std::print("");
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+
+
+	start = std::chrono::high_resolution_clock::now();
+	for (const auto& p: v)
+	{
+		if (p.getStrConsRefConst().empty()) // unsafe but fast
+			std::print("");
+		// Lifetime risks (dangling references if the source object is destroyed).
+		// // UB! Temporary dies immediately
+		//for (char c : p.getStrConsRefConst())
+		//{
+		//    if (c == ' ')
+		//    {
+		//
+		//    }
+		//}
+	}
+	end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+*/
+/*
+Performance Enhanced:
+	std::vector<PerformanceInGet> v{ 100000 };
+	auto start = std::chrono::high_resolution_clock::now();
+	for (const auto& p : v)
+	{
+		if (p.getName().empty()) // safe but slow
+			// Copies `name` unnecessarily
+			std::print("");
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+
+	PerformanceInGet p{ "Shanny" };
+	start = std::chrono::high_resolution_clock::now();
+	for (char c : p.getName())
+	{
+		if(c == ' ')
+			std::print("");
+	}
+	end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+
+*/
+private:
+	std::string name;
+};
+PerformanceInGet returnPerformanceInGetByValue()
+{
+	PerformanceInGet p("Shanny");
+	return p; // returns a copy (or move if optimized)
+}
