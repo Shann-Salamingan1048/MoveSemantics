@@ -70,3 +70,54 @@ private:
 	std::array<std::string, 1000> valArr;
 
 };
+
+
+class objDerived
+{
+public:
+	virtual void run() const = 0;
+	virtual ~objDerived() = default;
+	objDerived() = default;
+
+protected:
+	// declare the copy operator
+	objDerived(const objDerived&) = default;
+	objDerived(objDerived&&) = default;
+
+	// delete assignment operator
+	objDerived& operator=(const objDerived&) = delete;
+	objDerived& operator=(objDerived&&) = delete;
+	// Well You could just remove the virtual destructor so that you wont declare those. 
+	// Declare the virtual destructor in derived classes only when needed
+protected: // only the inhitors will inherit this class
+	std::string name;
+};
+class inhitorObj : public objDerived
+{
+public:
+	void run() const
+	{
+		std::println("inhitor Run Provoked! with value: {}", RadiusDaw);
+	}
+
+	const int RadiusDaw = 10;
+
+	/*
+	Sample Code:
+				inhitorObj lol;
+				objDerived& idk{ lol };
+				idk.run();
+				// idk = lol; // it sliced because assignment operator is not virtual.
+				// slice means only the derivedClass is copied meaning everything else in inhitors will not be copied.
+				// so it errors
+				// to solve this delete the assignment operators to prevent it to accident assigns
+				// now after deleting it, now it errors to prevent us from assignments
+				lol.run();
+				std::println("lol: {}", lol.RadiusDaw);
+
+				//idk = lol;
+				idk.run();
+				//std::println("idk: {}", idk.RadiusDaw);
+	
+	*/
+};

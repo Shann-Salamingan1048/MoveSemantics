@@ -1,10 +1,11 @@
 #include "MoveSemantics1.h"
 #include "Exercises.h"
 #include "Exercises2.h"
+#include "Example.h"
 int main()
 {
-	//MoveSemantics ms;
-	//ms.v = ms.initVector1();
+    //MoveSemantics ms;
+    //ms.v = ms.initVector1();
  //   printVector(ms.v);  // Output: data datadata data     
 
  //   std::println("{} ", ms.v.size());
@@ -17,10 +18,13 @@ int main()
 
  //   Exercises e;
  //   e.Run();
-    
+
     //Exercises2 e2;
     //e2.Run();
 
-    // page 54 or 93/260
+   
+
 	return 0;
+
+    // page 54 or 93/260
 }
