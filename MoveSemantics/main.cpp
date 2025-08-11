@@ -22,28 +22,10 @@ int main()
     //Exercises2 e2;
     //e2.Run();
 
-	std::vector<PerformanceInGet> v{ 10000 };
-	auto start = std::chrono::high_resolution_clock::now();
-	for (const auto& p : v) // const std::string& getName() const&
-	{
-		if (p.getName().empty()) // safe but slow
-			// Copies `name` unnecessarily
-			std::print("");
-	}
-	auto end = std::chrono::high_resolution_clock::now();
-	std::println("Time Took: {}ns", (end - start).count());
 
-	PerformanceInGet p{ "Shanny" };
-	start = std::chrono::high_resolution_clock::now();
-	for (char c : returnPerformanceInGetByValue().getName()) // std::string getName()&&
-	{
-		if(c == ' ')
-			std::print("");
-	}
-	end = std::chrono::high_resolution_clock::now();
-	std::println("Time Took: {}ns", (end - start).count());
+
 
 	return 0;
 
-    // page 54 or 93/260
+    //  104/260
 }

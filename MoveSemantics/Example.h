@@ -249,3 +249,65 @@ PerformanceInGet returnPerformanceInGetByValue()
 	PerformanceInGet p("Shanny");
 	return p; // returns a copy (or move if optimized)
 }
+/*
+Sample Code:
+	std::vector<PerformanceInGet> v{ 10000 };
+	auto start = std::chrono::high_resolution_clock::now();
+	for (const auto& p : v) // const std::string& getName() const&
+	{
+		if (p.getName().empty()) // safe but slow
+			// Copies `name` unnecessarily
+			std::print("");
+	}
+	auto end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+
+	PerformanceInGet p{ "Shanny" };
+	start = std::chrono::high_resolution_clock::now();
+	for (char c : returnPerformanceInGetByValue().getName()) // std::string getName()&&
+	{
+		if(c == ' ')
+			std::print("");
+	}
+	end = std::chrono::high_resolution_clock::now();
+	std::println("Time Took: {}ns", (end - start).count());
+
+*/
+
+class C
+{
+public:
+	void foo() const&
+	{
+		std::println("foo() const& provoked!");
+	}
+	void foo()&
+	{
+		std::println("foo()& provoked!");
+	}
+	void foo()&&
+	{
+		std::println("foo()&& provoked!");
+	}
+	void foo() const&&
+	{
+		std::println("foo() const&& provoked!");
+	}
+	//void foo() const
+	//{
+
+	//}// ERROR: can’t overload by both reference and value qualifiers
+	/*
+	Sample Code:
+		C x;
+		x.foo(); // calls foo()&
+		C{}.foo(); // calls foo()&&
+		std::move(x).foo(); // calls foo()&&
+    
+		const C cx;
+		cx.foo(); // calls foo() const&
+
+		std::move(cx).foo(); // calls foo() const&&
+	
+	*/
+};
