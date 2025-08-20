@@ -132,9 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Example.h" />
+    <ClInclude Include="Example2.h" />
     <ClInclude Include="Exercises.h" />
     <ClInclude Include="Exercises2.h" />
     <ClInclude Include="MoveSemantics1.h" />
+    <ClInclude Include="TryRa.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="c-move-semantics-the-complete-guide-ebooknbsped-3967309002-9783967309003_compress.pdf" />

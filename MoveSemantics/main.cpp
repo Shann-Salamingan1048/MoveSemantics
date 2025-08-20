@@ -2,6 +2,8 @@
 #include "Exercises.h"
 #include "Exercises2.h"
 #include "Example.h"
+#include "Example2.h"
+#include "TryRa.h"
 int main()
 {
     //MoveSemantics ms;
@@ -22,10 +24,7 @@ int main()
     //Exercises2 e2;
     //e2.Run();
 
-
-
-
 	return 0;
 
-    //  104/260
+    //  116/260
 }
